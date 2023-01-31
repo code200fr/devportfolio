@@ -1,0 +1,14 @@
+{
+  "viewsDirectory": "./views",
+  "outDirectory": "./generated",
+  "locales": ["en", "fr"],
+  "defaultLocale": "en",
+  "title": "Code 200 - Full Stack Developer Freelance",
+  "profile": {
+    "name": "Code 200"
+  },
+  "sections": [
+    "splash",
+    "about"
+  ]
+}

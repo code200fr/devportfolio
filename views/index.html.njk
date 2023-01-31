@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <link crossorigin="anonymous" media="all" rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+    {% for section in sections %}
+        <section class="{{ section }}-section" id="{{ section }}">
+            {% set next_section = sections[loop.index] %}
+            {% include section ~ '.html.njk' %}
+        </section>
+    {% endfor %}
+</body>
+</html>

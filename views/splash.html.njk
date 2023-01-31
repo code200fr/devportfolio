@@ -1,0 +1,9 @@
+<div class="profile">
+    {% include 'code-icon.svg' %}
+
+    <h1>{{ profile.name }}</h1>
+
+    {% if next_section %}
+        <a href="#{{ next_section }}">Next</a>
+    {% endif %}
+</div>

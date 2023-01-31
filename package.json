@@ -1,0 +1,44 @@
+{
+  "name": "devportfolio",
+  "version": "1.0.0",
+  "description": "Developer portfolio homepage",
+  "main": "build/app.js",
+  "scripts": {
+    "prebuild": "npx eslint .",
+    "build": "tsc",
+    "generate": "node .",
+    "serve": "serve ./generated/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/code200fr/devportfolio.git"
+  },
+  "keywords": [
+    "dev",
+    "developer",
+    "homepage",
+    "home",
+    "portfolio",
+    "static"
+  ],
+  "author": "Jonathan Prevost - Code 200",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/code200fr/devportfolio/issues"
+  },
+  "homepage": "https://github.com/code200fr/devportfolio#readme",
+  "dependencies": {
+    "html-minifier": "^4.0.0",
+    "nunjucks": "^3.2.3"
+  },
+  "devDependencies": {
+    "@types/html-minifier": "^4.0.2",
+    "@types/node": "^18.11.18",
+    "@types/nunjucks": "^3.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "eslint": "^8.33.0",
+    "serve": "^14.2.0",
+    "typescript": "^4.9.5"
+  }
+}
