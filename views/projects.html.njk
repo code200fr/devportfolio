@@ -1,1 +1,27 @@
 <h2>{{ projects.title }}</h2>
+
+<div class="projects">
+{% for item in projects.items %}
+    <div class="project">
+        {% if item.image %}
+            <img src="./assets/{{ item.image }}" alt="{{ item.title }}" class="screenshot">
+        {% endif %}
+        <div class="text-content">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description|nl2br }}</p>
+
+            {% if item.url %}
+                <a class="project-url" target="_blank" href="{{ item.url }}">{{ item.url|truncate(32) }}</a>
+            {% endif %}
+
+            {% if item.skills %}
+                <div class="skills">
+                {% for skill in item.skills %}
+                    <span class="skill-badge">{{ skill }}</span>
+                {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+</div>

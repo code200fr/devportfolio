@@ -7,6 +7,7 @@
     --text-color: #fff;
     --spacer: 3rem;
     --max-section-width: 1200px;
+    --skill-badge-color: #2abdaf;
 }
 
 html {
@@ -117,6 +118,64 @@ section h2 {
     flex-grow: 1;
 }
 
+.projects-section {
+    text-align: center;
+    max-width: 900px;
+}
+
+.projects-section .projects {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+}
+
+.projects-section .project {
+    border-radius: 3px;
+    width: 90%;
+    margin: 2%;
+    text-align: left;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.projects-section .project .text-content {
+    flex-grow: 1;
+    margin-bottom: 2rem;
+}
+
+.projects-section .project h3 {
+    font-weight: 300;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.projects-section .project .project-url {
+    color: var(--text-color);
+    display: block;
+}
+
+.projects-section .project .skills {
+    margin-top: 1rem;
+}
+
+.projects-section .project .skill-badge {
+    font-size: 0.75rem;
+    background-color: var(--skill-badge-color);
+    border-radius: 200px;
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+                 Bitstream Vera Sans Mono, Courier New;
+}
+
+.projects-section .project .screenshot {
+    max-width: 100%;
+    max-height: 230px;
+}
+
 @keyframes SplashAnimation {
     0% { background-position: 0 7%; }
     50% { background-position: 100% 94%; }
@@ -128,4 +187,6 @@ section h2 {
     .splash-section .baselines { font-size: 2rem }
     .about-section { flex-direction: row }
     .about-section .avatar { margin-right: var(--spacer) }
+    .projects-section .project { flex-direction: row-reverse; }
+    .projects-section .project .text-content { margin-bottom: 0 }
 }
