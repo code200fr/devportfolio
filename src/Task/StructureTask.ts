@@ -1,5 +1,4 @@
 import {Task} from "./Task";
-import path from "path";
 import process from "process";
 import {Configuration} from "../Configuration";
 import fs from "fs";
@@ -8,10 +7,7 @@ export class StructureTask extends Task {
     readonly name: string = 'Creating directories';
 
     async execute(): Promise<void> {
-        const outPath: string = path.join(
-            process.cwd(),
-            Configuration.get('outDirectory')
-        );
+        const outPath: string = Configuration.getOutPath();
 
         if (!outPath.startsWith(process.cwd())) {
             throw "Trying to generate files outside of the repo scope. Too dangerous, cancelling";
@@ -27,8 +23,6 @@ export class StructureTask extends Task {
         }
 
         fs.mkdirSync(outPath);
-
-        Configuration.set('safeOutDirectory', outPath);
 
         console.info('All folders created');
 

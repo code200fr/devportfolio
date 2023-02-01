@@ -11,9 +11,8 @@ export class AssetsTask extends Task {
     ];
 
     async execute(): Promise<void> {
-        const outPath: string = Configuration.get('safeOutDirectory');
         const assetsPath: string = path.join(process.cwd(), 'assets');
-        const outAssetsPath: string = path.join(outPath, 'assets');
+        const outAssetsPath: string = path.join(Configuration.getOutPath(), 'assets');
 
         fs.cpSync(assetsPath, outAssetsPath, {
             recursive: true

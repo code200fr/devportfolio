@@ -9,10 +9,12 @@
 </head>
 <body>
     {% for section in sections %}
-        <section class="{{ section }}-section" id="{{ section }}">
-            {% set next_section = sections[loop.index] %}
-            {% include section ~ '.html.njk' %}
-        </section>
+        <div class="section-wrapper wrapper-{{ section }}">
+            <section class="{{ section }}-section" id="{{ section }}">
+                {% set next_section = sections[loop.index] %}
+                {% include section ~ '.html.njk' %}
+            </section>
+        </div>
     {% endfor %}
 
     <script src="./assets/app.js"></script>

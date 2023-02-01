@@ -1,1 +1,8 @@
-<h2>About me</h2>
+{% if about.avatar %}
+    <img src="./assets/{{ about.avatar }}" alt="{{ profile.name }}" class="avatar">
+{% endif %}
+
+<div class="text-content">
+    <h2>{{ about.title }}</h2>
+    <p>{{ about.content|nl2br }}</p>
+</div>

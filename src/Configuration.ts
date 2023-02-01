@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as process from "process";
 import * as path from "path";
+import {Settings} from "./Settings";
 
 export class Configuration {
     protected static readonly SettingsFilePath: string = './etc/settings.json';
@@ -11,9 +12,11 @@ export class Configuration {
         return Configuration.settings[property];
     }
 
-    public static set<P extends keyof Settings>(property: P, value: Settings[P]): void  {
-        Configuration.load();
-        Configuration.settings[property] = value;
+    public static getOutPath(): string {
+        return path.join(
+            process.cwd(),
+            Configuration.get('outDirectory')
+        );
     }
 
     protected static getSettingsFilePath(): string {
@@ -21,6 +24,11 @@ export class Configuration {
             process.cwd(),
             Configuration.SettingsFilePath,
         );
+    }
+
+    public static reload(): void {
+        delete Configuration.settings;
+        Configuration.load();
     }
 
     protected static load(): void {
@@ -44,20 +52,9 @@ export class Configuration {
         return [
             'title',
             'profile',
-            'sections'
+            'sections',
+            'about',
+            'projects'
         ]
     }
-}
-
-export interface Settings {
-    viewsDirectory: string;
-    outDirectory: string;
-    locales: string[];
-    defaultLocale: string;
-    title: string,
-    profile: {
-        name: string;
-    },
-    sections: string[],
-    safeOutDirectory: string; // at runtime
 }

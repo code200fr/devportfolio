@@ -8,13 +8,14 @@ import {minify} from "html-minifier";
 export class HTMLTask extends Task {
     readonly name: string = 'Generating HTML files';
     readonly watchFiles: string[] = [
-        'views/'
+        'views/',
+        'etc/'
     ];
 
     async execute(): Promise<void> {
         const engine: TemplateEngine = new TemplateEngine();
         const locales: string[] = Configuration.get('locales');
-        const outPath: string = Configuration.get('safeOutDirectory');
+        const outPath: string = Configuration.getOutPath();
 
         for (const locale of locales) {
             const isDefaultLocale: boolean = locale === Configuration.get('defaultLocale');

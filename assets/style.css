@@ -1,6 +1,12 @@
 :root {
     --splash-gradient: linear-gradient(136deg, #9AE8B4, #2abdaf, #FF9F5C, #FF3F29, #FFED50);
     --splash-gradient-speed: 25s;
+    --splash-baseline-blur-speed: 0.45s;
+    --background-odd: #161c2d;
+    --background-even: #202940;
+    --text-color: #fff;
+    --spacer: 3rem;
+    --max-section-width: 1200px;
 }
 
 html {
@@ -15,8 +21,29 @@ body {
         sans-serif;
 }
 
+.section-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.section-wrapper:nth-child(even) {
+    background-color: var(--background-even);
+}
+
+.section-wrapper:nth-child(odd) {
+    background-color: var(--background-odd);
+}
+
 section {
     box-sizing: border-box;
+    color: var(--text-color);
+    max-width: var(--max-section-width);
+    flex-grow: 1;
+}
+
+section h2 {
+    font-size: 2.3rem;
+    font-weight: 300;
 }
 
 .splash-section {
@@ -29,7 +56,6 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
 }
 
 .splash-section .profile {
@@ -41,9 +67,54 @@ section {
 }
 
 .splash-section .profile h1 {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     font-weight: 300;
     margin: 0.2rem;
+}
+
+.splash-section .baselines {
+    padding: 0 2rem;
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+}
+
+.splash-section .baseline {
+    display: none;
+}
+
+.splash-section .baseline.active {
+    display: inherit;
+}
+
+.splash-section .baseline span {
+    transition: filter var(--splash-baseline-blur-speed) linear,
+                opacity var(--splash-baseline-blur-speed) linear;
+    filter: blur(0);
+    opacity: 1;
+}
+
+.splash-section .baseline span.blur {
+    filter: blur(25px);
+    opacity: 0;
+}
+
+.about-section {
+    display: flex;
+    padding: var(--spacer);
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-section .avatar {
+    width: 320px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
+.about-section .text-content {
+    text-align: center;
+    flex-grow: 1;
 }
 
 @keyframes SplashAnimation {
@@ -52,3 +123,9 @@ section {
     100% { background-position: 0 7%; }
 }
 
+@media only screen and (min-width: 1024px) {
+    .splash-section .profile h1 { font-size: 4.5rem }
+    .splash-section .baselines { font-size: 2rem }
+    .about-section { flex-direction: row }
+    .about-section .avatar { margin-right: var(--spacer) }
+}

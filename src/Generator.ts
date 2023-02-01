@@ -6,6 +6,7 @@ import path from "path";
 import process from "process";
 import {AssetsTask} from "./Task/AssetsTask";
 import {FSWatcher, watch} from "chokidar";
+import {Configuration} from "./Configuration";
 
 export class Generator {
     public static create(): Generator {
@@ -29,9 +30,11 @@ export class Generator {
             });
 
             const run = () => {
+                Configuration.reload();
                 console.log(task.name);
-                task.execute().catch((e) => console.error(e))
-                console.log('[✓]');
+                task.execute()
+                    .then(() => console.log('[✓]'))
+                    .catch((e) => console.error(e));
             };
 
             const watcher: FSWatcher = watch(watchPaths, {

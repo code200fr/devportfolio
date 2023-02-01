@@ -3,18 +3,43 @@
   "outDirectory": "./generated",
   "locales": ["en", "fr"],
   "defaultLocale": "en",
-  "title": "Code 200 - Full Stack Developer Freelance",
+  "title": "Portfolio - Full Stack Developer Freelance",
   "profile": {
-    "name": "Code 200 Development",
+    "name": "Hi! I'm Developer's name!",
     "baselines": [
-      "Full Stack Web Developer",
+      "Full Stack Freelance Web Developer",
       "Symfony Developer",
-      "Node.js Developer",
-      "NestJS Developer"
+      "NestJS Developer",
+      "Angular Developer",
+      "More than 15 years of experience"
+    ]
+  },
+  "about": {
+    "title": "About me",
+    "content": "I am a person with interesting skills, hire me. Also, I have a fun life.",
+    "avatar": "hacker-cat.jpg"
+  },
+  "projects": {
+    "title": "Projects",
+    "items": [
+      {
+        "title": "An open source project",
+        "description": "A nice project which helps the developers community.",
+        "skills": ["HTML", "CSS", "JavaScript"],
+        "url": "https://github.com",
+        "image": "project1.jpg"
+      },
+      {
+        "title": "A commercial project",
+        "description": "A freelance project that lasted 4 months.",
+        "skills": ["TypeScript", "NestJS", "AWS"],
+        "image": "project2.jpg"
+      }
     ]
   },
   "sections": [
     "splash",
-    "about"
+    "about",
+    "projects"
   ]
 }

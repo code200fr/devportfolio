@@ -3,17 +3,17 @@
 
     <h1>{{ profile.name }}</h1>
 
-    {% if profile.baselines|length %}
+    {% if profile.baselines %}
     <div class="baselines">
         {% for baseline in profile.baselines %}
-        <strong {% if loop.first %}class="active"{% endif %}>
+        <strong class="baseline {% if loop.first %}active"{% endif %}">
             {{ baseline }}
         </strong>
         {% endfor %}
     </div>
     {% endif %}
 
-    {% if next_section %}
+    {% if next_section and false %}
         <a href="#{{ next_section }}">Next</a>
     {% endif %}
 </div>

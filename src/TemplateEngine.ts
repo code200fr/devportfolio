@@ -1,6 +1,7 @@
 import nunjucks, {Environment} from "nunjucks";
 import * as path from "path";
-import {Configuration, Settings} from "./Configuration";
+import {Configuration} from "./Configuration";
+import {Settings} from "./Settings";
 
 export class TemplateEngine {
     protected env: Environment;
