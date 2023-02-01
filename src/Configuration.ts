@@ -3,6 +3,7 @@ import * as process from "process";
 import * as path from "path";
 
 export class Configuration {
+    protected static readonly SettingsFilePath: string = './etc/settings.json';
     protected static settings: Settings;
 
     public static get<P extends keyof Settings>(property: P): Settings[P] {
@@ -18,7 +19,7 @@ export class Configuration {
     protected static getSettingsFilePath(): string {
         return path.join(
             process.cwd(),
-            "etc/settings.json",
+            Configuration.SettingsFilePath,
         );
     }
 

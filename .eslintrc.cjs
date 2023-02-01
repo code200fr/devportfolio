@@ -5,10 +5,14 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking'
     ],
     parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint'],
+    plugins: [
+        '@typescript-eslint'
+    ],
     ignorePatterns: [
         "build/",
-        "generated/"
+        "generated/",
+        "scripts/",
+        "webpack.config.js"
     ],
     parserOptions: {
         project: ['./tsconfig.json'],

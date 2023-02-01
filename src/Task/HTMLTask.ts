@@ -7,6 +7,9 @@ import {minify} from "html-minifier";
 
 export class HTMLTask extends Task {
     readonly name: string = 'Generating HTML files';
+    readonly watchFiles: string[] = [
+        'views/'
+    ];
 
     async execute(): Promise<void> {
         const engine: TemplateEngine = new TemplateEngine();

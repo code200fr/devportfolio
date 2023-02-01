@@ -5,7 +5,13 @@
   "defaultLocale": "en",
   "title": "Code 200 - Full Stack Developer Freelance",
   "profile": {
-    "name": "Code 200"
+    "name": "Code 200 Development",
+    "baselines": [
+      "Full Stack Web Developer",
+      "Symfony Developer",
+      "Node.js Developer",
+      "NestJS Developer"
+    ]
   },
   "sections": [
     "splash",

@@ -28,13 +28,6 @@ export class StructureTask extends Task {
 
         fs.mkdirSync(outPath);
 
-        const assetsPath: string = path.join(process.cwd(), 'assets');
-        const outAssetsPath: string = path.join(outPath, 'assets');
-
-        fs.cpSync(assetsPath, outAssetsPath, {
-            recursive: true
-        });
-
         Configuration.set('safeOutDirectory', outPath);
 
         console.info('All folders created');

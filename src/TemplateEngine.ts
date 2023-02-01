@@ -20,11 +20,7 @@ export class TemplateEngine {
     }
 
     public render(fileName: string, context?: TemplateContext): string {
-        if (!context) {
-            context = {};
-        }
-
-        return this.env.render(fileName, context);
+        return this.env.render(fileName, context ?? {});
     }
 }
 
