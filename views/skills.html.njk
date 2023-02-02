@@ -1,0 +1,19 @@
+<h2>{{ skills.title }}</h2>
+
+<div class="skills">
+    {% for skill in skills.items %}
+        <div class="skill">
+            <div class="header">
+                <strong>{{ skill.name }}</strong>
+
+                {% if skill.duration %}
+                    <em>{{ skill.duration }}</em>
+                {% endif %}
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" style="width: {{ skill.percent }}%"></div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

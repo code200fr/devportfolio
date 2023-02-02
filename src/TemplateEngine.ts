@@ -11,9 +11,15 @@ export class TemplateEngine {
             autoescape: true
         });
 
-        Configuration.getPublicSettingsProperties().forEach((property: keyof Settings) => {
+        Configuration.getProperties().forEach((property: keyof Settings) => {
             this.env.addGlobal(property, Configuration.get(property));
         });
+
+        this.env.addGlobal('base64', this.base64.bind(this));
+    }
+
+    protected base64(data: string): string {
+        return Buffer.from(data).toString('base64');
     }
 
     protected getViewsDirectory(): string {

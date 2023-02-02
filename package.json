@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/code200fr/devportfolio#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.1",
     "html-minifier": "^4.0.0",
     "nunjucks": "^3.2.3"
   },

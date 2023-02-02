@@ -1,17 +1,38 @@
+@import "webfonts/brands.css";
+
 :root {
     --splash-gradient: linear-gradient(136deg, #9AE8B4, #2abdaf, #FF9F5C, #FF3F29, #FFED50);
     --splash-gradient-speed: 25s;
     --splash-baseline-blur-speed: 0.45s;
-    --background-odd: #161c2d;
-    --background-even: #202940;
+    --background-odd: #250C29;
+    --background-even: #311036;
+    --background-scrollbar: #0E050F;
     --text-color: #fff;
     --spacer: 3rem;
     --max-section-width: 1200px;
-    --skill-badge-color: #2abdaf;
+    --primary-color: #47DEB5;
+    --skill-badge-background: var(--primary-color);
+    --skill-badge-color: var(--background-odd);
+    --skill-progress-bar-background: #121722;
+    --skill-progress-bar: var(--primary-color);
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: 9px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 20px;
+}
+
+html::-webkit-scrollbar-track {
+    background: var(--background-scrollbar);
+    border-radius: 20px;
 }
 
 body {
@@ -25,6 +46,11 @@ body {
 .section-wrapper {
     display: flex;
     justify-content: center;
+    padding-top: 1.5rem;
+}
+
+.section-wrapper:nth-child(odd) {
+    box-shadow: inset 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .section-wrapper:nth-child(even) {
@@ -45,6 +71,11 @@ section {
 section h2 {
     font-size: 2.3rem;
     font-weight: 300;
+}
+
+.section-wrapper.wrapper-splash {
+    padding-top: 0;
+    box-shadow: none;
 }
 
 .splash-section {
@@ -81,6 +112,7 @@ section h2 {
 
 .splash-section .baseline {
     display: none;
+    height: 2.2em;
 }
 
 .splash-section .baseline.active {
@@ -118,9 +150,9 @@ section h2 {
     flex-grow: 1;
 }
 
-.projects-section {
-    text-align: center;
-    max-width: 900px;
+.projects-section h2 {
+    margin-left: 7%;
+    margin-bottom: 0;
 }
 
 .projects-section .projects {
@@ -137,13 +169,14 @@ section h2 {
     margin: 2%;
     text-align: left;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
 }
 
 .projects-section .project .text-content {
     flex-grow: 1;
-    margin-bottom: 2rem;
+    margin: 1rem 0;
+    width: 100%;
 }
 
 .projects-section .project h3 {
@@ -163,17 +196,115 @@ section h2 {
 
 .projects-section .project .skill-badge {
     font-size: 0.75rem;
-    background-color: var(--skill-badge-color);
+    background-color: var(--skill-badge-background);
+    color: var(--skill-badge-color);
     border-radius: 200px;
     display: inline-block;
     padding: 0.3rem 0.8rem;
     font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-                 Bitstream Vera Sans Mono, Courier New;
+                 Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
 .projects-section .project .screenshot {
     max-width: 100%;
     max-height: 230px;
+}
+
+.skills-section {
+
+}
+
+.skills-section h2 {
+    text-align: center;
+}
+
+.skills-section .skills {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+}
+
+.skills-section .skill {
+    width: 95%;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    padding: 0 1rem;
+}
+
+.skills-section .skill .header {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skills-section .skill .header em {
+    font-size: 0.8rem;
+    font-style: normal;
+}
+
+.skills-section .progress-bar {
+    height: 1rem;
+    width: 100%;
+    background-color: var(--skill-progress-bar-background);
+}
+
+.skills-section .progress {
+    height: 100%;
+    background-color: var(--skill-progress-bar);
+}
+
+.contact-section {
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.contact-section address {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 300;
+    padding: 0 var(--spacer);
+}
+
+.contact-section address a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.contact-section nav.social ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-section nav.social ul li {
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    padding: 0.75rem;
+}
+
+.contact-section nav.social ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.15s linear;
+}
+
+.contact-section nav.social ul li a:hover {
+    color: var(--primary-color);
+}
+
+a.contact-mail::before {
+    content: "✉️";
+    margin-right: 0.2rem;
+}
+
+.fa-brands {
+    font: var(--fa-font-brands);
 }
 
 @keyframes SplashAnimation {
@@ -188,5 +319,5 @@ section h2 {
     .about-section { flex-direction: row }
     .about-section .avatar { margin-right: var(--spacer) }
     .projects-section .project { flex-direction: row-reverse; }
-    .projects-section .project .text-content { margin-bottom: 0 }
+    .skills-section .skill { width: 40%; }
 }

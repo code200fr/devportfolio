@@ -14,10 +14,14 @@ export class AssetsTask extends Task {
         const assetsPath: string = path.join(process.cwd(), 'assets');
         const outAssetsPath: string = path.join(Configuration.getOutPath(), 'assets');
 
-        fs.cpSync(assetsPath, outAssetsPath, {
-            recursive: true
-        });
+        return new Promise((resolve: () => void) => {
+            setTimeout(() => {
+                fs.cpSync(assetsPath, outAssetsPath, {
+                    recursive: true
+                });
 
-        return Promise.resolve();
+                return resolve();
+            }, 100); // Necessary slight delay
+        })
     }
 }

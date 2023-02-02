@@ -19,6 +19,11 @@ export class Configuration {
         );
     }
 
+    public static getProperties(): Array<keyof Settings> {
+        Configuration.load();
+        return Object.keys(Configuration.settings) as Array<keyof Settings>;
+    }
+
     protected static getSettingsFilePath(): string {
         return path.join(
             process.cwd(),
@@ -46,15 +51,5 @@ export class Configuration {
         } catch (e) {
             throw "Unable to parse settings file";
         }
-    }
-
-    public static getPublicSettingsProperties(): Array<keyof Settings> {
-        return [
-            'title',
-            'profile',
-            'sections',
-            'about',
-            'projects'
-        ]
     }
 }

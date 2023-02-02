@@ -1,0 +1,31 @@
+<h2>{{ contact.title }}</h2>
+
+{% if contact.mail.address %}
+    <address>
+        {% if contact.mail.obfuscate %}
+            {{ contact.mail.phrasing|replace(
+                '{{mail}}',
+                '<a class="obm" data-m="' ~ base64(contact.mail.address) ~ '" href="#"></a>'
+            )|safe }}
+        {% else %}
+            {{ contact.mail.phrasing|replace(
+                '{{mail}}',
+                '<a href="mailto:' ~ contact.mail.address ~ '">' ~ contact.mail.address ~ '</a>'
+            )|safe }}
+        {% endif %}
+    </address>
+{% endif %}
+
+{% if contact.social %}
+    <nav class="social">
+        <ul>
+            {% for social in contact.social %}
+            <li>
+                <a href="{{ social.url }}" target="_blank">
+                    <i class="fa-brands fa-{{ social.type }}"></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}

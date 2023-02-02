@@ -4,6 +4,7 @@
   "locales": ["en", "fr"],
   "defaultLocale": "en",
   "title": "Portfolio - Full Stack Developer Freelance",
+  "meta_description": "A freelance web developer with tons of experience.",
   "profile": {
     "name": "Hi! I'm Developer's name!",
     "baselines": [
@@ -37,9 +38,63 @@
       }
     ]
   },
+  "skills": {
+    "title": "Skills",
+    "items": [
+      {
+        "name": "Node.js",
+        "duration": "5 years+",
+        "percent": 100
+      },
+      {
+        "name": "Angular",
+        "duration": "3 years+",
+        "percent": 100
+      },
+      {
+        "name": "AWS",
+        "duration": "8 months",
+        "percent": 75
+      },
+      {
+        "name": "CSS",
+        "duration": "10 years",
+        "percent": 100
+      },
+      {
+        "name": "RDB",
+        "duration": "10 years+",
+        "percent": 95
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in touch!",
+    "mail": {
+      "address": "yourmail@example.com",
+      "obfuscate": true,
+      "phrasing": "Send me an email at {{mail}} and I'll get back to you within a few days!"
+    },
+    "social": [
+      {
+        "url": "https://twitter.com/Wikipedia",
+        "type": "twitter"
+      },
+      {
+        "url": "https://github.com/code200fr",
+        "type": "github"
+      },
+      {
+        "url": "https://www.linkedin.com/feed/",
+        "type": "linkedin"
+      }
+    ]
+  },
   "sections": [
     "splash",
     "about",
-    "projects"
+    "projects",
+    "skills",
+    "contact"
   ]
 }

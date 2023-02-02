@@ -4,20 +4,34 @@ export interface Settings {
     locales: string[];
     defaultLocale: string;
     title: string,
-    profile: {
+    meta_description?: string;
+    profile?: {
         name: string;
         baselines?: string[];
     },
-    about: {
+    about?: {
         title: string;
         content: string;
         avatar?: string;
     },
-    projects: {
+    projects?: {
         title: string,
         items: SettingsProjectItem[]
-    }
-    sections: string[]
+    },
+    skills?: {
+        title: string,
+        items: SettingsSkillItem[]
+    },
+    contact?: {
+        title: string,
+        mail: {
+            "address": string,
+            "obfuscate": boolean,
+            "phrasing": string
+        },
+        social: SettingsContactSocial[]
+    },
+    sections: string[],
 }
 
 interface SettingsProjectItem {
@@ -26,4 +40,15 @@ interface SettingsProjectItem {
     skills?: string[];
     url?: string;
     img?: string;
+}
+
+interface SettingsSkillItem {
+    name: string;
+    duration?: string;
+    percent: number;
+}
+
+interface SettingsContactSocial {
+    url: string;
+    type: string;
 }
