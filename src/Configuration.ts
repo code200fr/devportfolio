@@ -4,30 +4,48 @@ import * as path from "path";
 import {Settings} from "./Settings";
 
 export class Configuration {
-    protected static readonly SettingsFilePath: string = './etc/settings.json';
-    protected static settings: Settings;
+    protected static readonly DefaultLocaleKey: string = 'default';
+    protected static readonly SettingsDirectory: string = './etc';
+    protected static readonly SettingsFilePath: string = 'settings.json';
 
-    public static get<P extends keyof Settings>(property: P): Settings[P] {
+    protected static settings: AllSettings;
+
+    public static get<P extends keyof Settings>(property: P, locale?: string): Settings[P] {
         Configuration.load();
-        return Configuration.settings[property];
+        const localeKey: string = Configuration.getLocaleKey(locale);
+
+        return Configuration.settings[localeKey][property];
     }
 
     public static getOutPath(): string {
         return path.join(
             process.cwd(),
-            Configuration.get('outDirectory')
+            './generated'
         );
     }
 
-    public static getProperties(): Array<keyof Settings> {
+    public static getProperties(locale?: string): Array<keyof Settings> {
         Configuration.load();
-        return Object.keys(Configuration.settings) as Array<keyof Settings>;
+        const localeKey: string = Configuration.getLocaleKey(locale);
+
+        return Object.keys(Configuration.settings[localeKey]) as Array<keyof Settings>;
     }
 
-    protected static getSettingsFilePath(): string {
+    protected static getSettingsFilePath(locale?: string): string {
+        const localeKey: string = Configuration.getLocaleKey(locale);
+
+        let fileName: string;
+
+        if (localeKey === Configuration.DefaultLocaleKey) {
+            fileName = Configuration.SettingsFilePath;
+        } else {
+            fileName = localeKey.replace('.', '').replace(path.sep, '') + '.json';
+        }
+
         return path.join(
             process.cwd(),
-            Configuration.SettingsFilePath,
+            Configuration.SettingsDirectory,
+            fileName,
         );
     }
 
@@ -41,15 +59,79 @@ export class Configuration {
             return;
         }
 
+        Configuration.settings = {};
+
+        const defaultSettings: Settings = Configuration.loadSettings();
+
+        Configuration.settings[Configuration.DefaultLocaleKey] = defaultSettings;
+
+        if (Array.isArray(defaultSettings.locales)) {
+            for (const locale of defaultSettings.locales) {
+                if (locale === defaultSettings.defaultLocale) {
+                    continue;
+                }
+
+                const localeSettings: Partial<Settings> = Configuration.loadSettings(locale);
+
+                Configuration.settings[locale] = Configuration.merge(
+                    defaultSettings as unknown as MergeObject,
+                    localeSettings as unknown as MergeObject
+                );
+            }
+        }
+    }
+
+    protected static loadSettings(locale?: string): Settings {
+        console.log(this.getSettingsFilePath(locale));
+
         try {
             const rawSettings: string = fs.readFileSync(
-                this.getSettingsFilePath(),
+                this.getSettingsFilePath(locale),
                 'utf8'
             );
 
-            Configuration.settings = JSON.parse(rawSettings) as Settings;
+            return JSON.parse(rawSettings) as Settings;
         } catch (e) {
             throw "Unable to parse settings file";
         }
     }
+
+    protected static isObject(item: unknown): boolean {
+        return (item && typeof item === 'object' && !Array.isArray(item));
+    }
+
+    protected static merge(target: MergeObject, source: MergeObject): Settings {
+        const output: MergeObject = Object.assign({}, target);
+
+        if (Configuration.isObject(target) && Configuration.isObject(source)) {
+            Object.keys(source).forEach(key => {
+                if (Configuration.isObject(source[key])) {
+                    if (!(key in target)) {
+                        Object.assign(output, {[key]: source[key]});
+                    } else {
+                        output[key] = Configuration.merge(
+                            target[key] as MergeObject,
+                            source[key] as MergeObject
+                        );
+                    }
+                } else {
+                    Object.assign(output, { [key]: source[key] });
+                }
+            });
+        }
+
+        return output as unknown as Settings;
+    }
+
+    protected static getLocaleKey(locale?: string): string {
+        return locale ?? Configuration.DefaultLocaleKey;
+    }
+}
+
+interface AllSettings {
+    [locale: string]: Settings;
+}
+
+type MergeObject = {
+    [property: string]: MergeObject|unknown;
 }

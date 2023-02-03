@@ -1,19 +1,15 @@
 <h2>{{ skills.title }}</h2>
 
 <div class="skills">
-    {% for skill in skills.items %}
-        <div class="skill">
-            <div class="header">
-                <strong>{{ skill.name }}</strong>
+    {% for category in skills.categories %}
+        <div class="skill-category">
+            <strong>{{ category.title }}</strong>
 
-                {% if skill.duration %}
-                    <em>{{ skill.duration }}</em>
-                {% endif %}
-            </div>
-
-            <div class="progress-bar">
-                <div class="progress" style="width: {{ skill.percent }}%"></div>
-            </div>
+            <ul>
+                {% for skill in category.items %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
         </div>
     {% endfor %}
 </div>

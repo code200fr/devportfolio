@@ -6,13 +6,13 @@ import {Settings} from "./Settings";
 export class TemplateEngine {
     protected env: Environment;
 
-    constructor() {
+    constructor(protected locale: string|null) {
         this.env = nunjucks.configure(this.getViewsDirectory(), {
             autoescape: true
         });
 
-        Configuration.getProperties().forEach((property: keyof Settings) => {
-            this.env.addGlobal(property, Configuration.get(property));
+        Configuration.getProperties(this.locale).forEach((property: keyof Settings) => {
+            this.env.addGlobal(property, Configuration.get(property, this.locale));
         });
 
         this.env.addGlobal('base64', this.base64.bind(this));
@@ -23,7 +23,7 @@ export class TemplateEngine {
     }
 
     protected getViewsDirectory(): string {
-        return path.join(process.cwd(), Configuration.get('viewsDirectory'));
+        return path.join(process.cwd(), './views');
     }
 
     public render(fileName: string, context?: TemplateContext): string {

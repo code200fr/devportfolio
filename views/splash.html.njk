@@ -1,7 +1,7 @@
 <div class="profile">
     {% include 'code-icon.svg' %}
 
-    <h1>{{ profile.name }}</h1>
+    <h1>{{ profile.title }}</h1>
 
     {% if profile.baselines %}
     <div class="baselines">
@@ -12,8 +12,19 @@
         {% endfor %}
     </div>
     {% endif %}
-
-    {% if next_section and false %}
-        <a href="#{{ next_section }}">Next</a>
-    {% endif %}
 </div>
+
+{% if locales|length > 1 %}
+    <div class="locales">
+        {% for locale in locales %}
+            {% set path = locale %}
+            {% if locale == defaultLocale %}
+                {% set path = 'index' %}
+            {% endif %}
+
+            <a href="./{{ path }}.html">
+                <img src="./assets/flag-{{ locale }}.svg" class="flag" alt="{{ locale }} flag">
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}

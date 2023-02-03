@@ -1,12 +1,10 @@
 {
-  "viewsDirectory": "./views",
-  "outDirectory": "./generated",
-  "locales": ["en", "fr"],
-  "defaultLocale": "en",
+  "locales": ["gb", "fr"],
+  "defaultLocale": "gb",
   "title": "Portfolio - Full Stack Developer Freelance",
   "meta_description": "A freelance web developer with tons of experience.",
   "profile": {
-    "name": "Hi! I'm Developer's name!",
+    "title": "Hi! I'm Developer's name!",
     "baselines": [
       "Full Stack Freelance Web Developer",
       "Symfony Developer",
@@ -40,31 +38,30 @@
   },
   "skills": {
     "title": "Skills",
-    "items": [
+    "categories": [
       {
-        "name": "Node.js",
-        "duration": "5 years+",
-        "percent": 100
+        "title": "Backend Development",
+        "items": ["Symfony", "express.js", "PHP", "Node.js", "TypeScript"]
       },
       {
-        "name": "Angular",
-        "duration": "3 years+",
-        "percent": 100
+        "title": "Frontend Development",
+        "items": ["JavaScript", "TypeScript", "Angular", "Advanced CSS/SCSS"]
       },
       {
-        "name": "AWS",
-        "duration": "8 months",
-        "percent": 75
+        "title": "Data",
+        "items": ["MySQL & MariaDB", "ElasticSearch", "Cassandra", "Redis"]
       },
       {
-        "name": "CSS",
-        "duration": "10 years",
-        "percent": 100
+        "title": "Deployment",
+        "items": ["AWS", "Docker", "Ansible", "AWS Linux 2"]
       },
       {
-        "name": "RDB",
-        "duration": "10 years+",
-        "percent": 95
+        "title": "API",
+        "items": ["Discord Bots", "OpenAI Dall-E & GPT-3"]
+      },
+      {
+        "title": "Tools",
+        "items": ["WebStorm", "PHPStorm", "DataGrip", "VSCode", "MidJourney"]
       }
     ]
   },

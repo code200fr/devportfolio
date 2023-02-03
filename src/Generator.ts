@@ -8,6 +8,7 @@ import {AssetsTask} from "./Task/AssetsTask";
 import {FSWatcher, watch} from "chokidar";
 import {Configuration} from "./Configuration";
 import {IconsTask} from "./Task/IconsTask";
+import {FlagsTask} from "./Task/FlagsTask";
 
 export class Generator {
     public static create(): Generator {
@@ -71,6 +72,7 @@ export class Generator {
             StructureTask,
             AssetsTask,
             IconsTask,
+            FlagsTask,
             HTMLTask,
             ScriptsTask
         ];

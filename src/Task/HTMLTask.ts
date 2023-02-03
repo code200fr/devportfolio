@@ -13,12 +13,13 @@ export class HTMLTask extends Task {
     ];
 
     async execute(): Promise<void> {
-        const engine: TemplateEngine = new TemplateEngine();
         const locales: string[] = Configuration.get('locales');
         const outPath: string = Configuration.getOutPath();
 
         for (const locale of locales) {
             const isDefaultLocale: boolean = locale === Configuration.get('defaultLocale');
+
+            const engine: TemplateEngine = new TemplateEngine(isDefaultLocale ? null : locale);
 
             const html: string = engine.render('index.html.njk', {
                 locale: locale,
