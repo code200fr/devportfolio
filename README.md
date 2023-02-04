@@ -1,8 +1,10 @@
 # Code 200 Portfolio
-A developer's portfolio, with a clean design, responsive,easily customizable and with localization.
+A developer's portfolio, with a clean design, responsive, easily customizable and with localization.
 All without any JavaScript framework and statically generated!
 
 ![Best Practices](./assets/best-practices.png)
+
+**[Demo here!](https://code200fr.github.io/portfolio/)**
 
 ## Install
 
