@@ -75,7 +75,8 @@ export class Configuration {
 
                 Configuration.settings[locale] = Configuration.merge(
                     defaultSettings as unknown as MergeObject,
-                    localeSettings as unknown as MergeObject
+                    localeSettings as unknown as MergeObject,
+                    true
                 );
             }
         }
@@ -100,27 +101,38 @@ export class Configuration {
         return (item && typeof item === 'object' && !Array.isArray(item));
     }
 
-    protected static merge(target: MergeObject, source: MergeObject): Settings {
-        const output: MergeObject = Object.assign({}, target);
-
-        if (Configuration.isObject(target) && Configuration.isObject(source)) {
-            Object.keys(source).forEach(key => {
-                if (Configuration.isObject(source[key])) {
-                    if (!(key in target)) {
-                        Object.assign(output, {[key]: source[key]});
-                    } else {
-                        output[key] = Configuration.merge(
-                            target[key] as MergeObject,
-                            source[key] as MergeObject
-                        );
-                    }
-                } else {
-                    Object.assign(output, { [key]: source[key] });
-                }
-            });
+    protected static merge(target: MergeObject, source: MergeObject, isMergingArrays = false): Settings {
+        if (!Configuration.isObject(target) || !Configuration.isObject(source)) {
+            return source as unknown as Settings;
         }
 
-        return output as unknown as Settings;
+        target = ((obj: MergeObject) => {
+            return Object.assign({}, obj);
+        })(target);
+
+        Object.keys(source).forEach(key => {
+            const targetValue = target[key];
+            const sourceValue = source[key];
+
+            if (Array.isArray(targetValue) && Array.isArray(sourceValue))
+                if (isMergingArrays) {
+                    target[key] = targetValue.map((x, i) => sourceValue.length <= i
+                        ? x as MergeObject
+                        : Configuration.merge(x as MergeObject, sourceValue[i] as MergeObject, isMergingArrays));
+
+                    if (sourceValue.length > targetValue.length) {
+                        target[key] = (target[key] as Array<unknown>).concat(sourceValue.slice(targetValue.length));
+                    }
+                } else {
+                    target[key] = targetValue.concat(sourceValue);
+                }
+            else if (Configuration.isObject(targetValue) && Configuration.isObject(sourceValue))
+                target[key] = Configuration.merge(Object.assign({}, targetValue), sourceValue as MergeObject, isMergingArrays);
+            else
+                target[key] = sourceValue;
+        });
+
+        return target as unknown as Settings;
     }
 
     protected static getLocaleKey(locale?: string): string {
