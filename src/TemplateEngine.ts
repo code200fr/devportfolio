@@ -16,6 +16,11 @@ export class TemplateEngine {
         });
 
         this.env.addGlobal('base64', this.base64.bind(this));
+        this.env.addGlobal('get_flag', this.getFlag.bind(this));
+    }
+
+    protected getFlag(locale: string): string {
+        return Configuration.get('flag', locale);
     }
 
     protected base64(data: string): string {

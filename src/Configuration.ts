@@ -136,7 +136,15 @@ export class Configuration {
     }
 
     protected static getLocaleKey(locale?: string): string {
-        return locale ?? Configuration.DefaultLocaleKey;
+        if (!locale) {
+            return Configuration.DefaultLocaleKey;
+        }
+
+        if (locale === Configuration.get('defaultLocale')) {
+            return Configuration.DefaultLocaleKey;
+        }
+
+        return locale;
     }
 }
 

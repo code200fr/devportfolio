@@ -1,6 +1,7 @@
 {
-  "locales": ["gb", "fr"],
-  "defaultLocale": "gb",
+  "locales": ["en", "fr"],
+  "defaultLocale": "en",
+  "flag": "gb",
   "title": "Portfolio - Full Stack Developer Freelance",
   "meta_description": "A freelance web developer with tons of experience.",
   "profile": {

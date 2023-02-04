@@ -5,6 +5,9 @@ export interface Settings {
     // Locale for the index.html file
     defaultLocale: string;
 
+    // Which flag to use to link to this locale (leave blank if only one locale)
+    flag?: string;
+
     // <title> of the page
     title: string,
 

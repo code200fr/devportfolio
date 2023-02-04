@@ -21,7 +21,7 @@
         <ul>
             {% for social in contact.social %}
             <li>
-                <a href="{{ social.url }}" target="_blank">
+                <a href="{{ social.url }}" target="_blank" aria-label="{{ social.type }}">
                     <i class="fa-brands fa-{{ social.type }}"></i>
                 </a>
             </li>

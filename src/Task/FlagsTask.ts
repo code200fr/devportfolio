@@ -13,11 +13,12 @@ export class FlagsTask extends Task {
         const locales: string[] = Configuration.get('locales');
 
         locales.forEach((locale: string) => {
-            const sourcePath: string = path.join(flagsPath, locale + '.svg');
-            const destination: string = path.join(outAssetsPath, 'flag-' + locale + '.svg');
+            const flag: string = Configuration.get('flag', locale) ?? locale;
+            const sourcePath: string = path.join(flagsPath, flag + '.svg');
+            const destination: string = path.join(outAssetsPath, 'flag-' + flag + '.svg');
 
             if (!fs.existsSync(sourcePath)) {
-                console.error(`Cannot find locale flag for ${locale} at ${sourcePath}`);
+                console.error(`Cannot find locale flag for ${flag} at ${sourcePath}`);
                 return;
             }
 

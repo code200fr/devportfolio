@@ -23,7 +23,7 @@
             {% endif %}
 
             <a href="./{{ path }}.html">
-                <img src="./assets/flag-{{ locale }}.svg" class="flag" alt="{{ locale }} flag">
+                <img src="./assets/flag-{{ get_flag(locale) }}.svg" class="flag" alt="{{ locale }} flag">
             </a>
         {% endfor %}
     </div>

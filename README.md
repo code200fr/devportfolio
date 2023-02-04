@@ -1,22 +1,20 @@
 # Code 200 Portfolio
-A simple developer homepage, with i18n and a custom static build
+A developer's portfolio, with a clean design, responsive,easily customizable and with localization.
+All without any JavaScript framework and statically generated!
 
-## Commands
-* `npm run build`: compiles the generator. *You should only have to run this one once.*
-* `npm run watch`: watch changes you make and update the `generated/` directory accordingly
-* `npm run serve`: starts a local server with your static website.
+![Best Practices](./assets/best-practices.png)
 
-## Directory structure
-* `assets/`: css files, images
-* `etc/`: configuration & i18n json files
-* `scripts/`: frontend typescript files
-* `src/`: generator typescript source files ("backend")
-* `views/`: nunjucks views
+## Install
 
-The following directories will be created:
-* `build/`: generator javascript compiled code
-* **`generated/`: the static website, ready. This is the folder you should deploy on your hosting service**
-* `node_modules/`: you know that one
+Simply clone the project and start editing:
+
+```
+git clone git@github.com:code200fr/devportfolio.git
+cd devportfolio
+npm i
+npm run build
+num run watch & npm run serve && fg
+```
 
 ## How to edit
 
@@ -38,3 +36,23 @@ It was designed so that the theme can be easily changed via CSS variables.
 
 To add images or videos, simply put them in the `assets/` folder,
 they will be copied at compile time.
+
+## Commands
+* `npm run build`: compiles the generator. *You should only have to run this one once.*
+* `npm run watch`: watch changes you make and update the `generated/` directory accordingly
+* `npm run serve`: starts a local server with your static website.
+
+## Directory structure
+* `assets/`: css files, images
+* `etc/`: configuration & i18n json files
+* `scripts/`: frontend typescript files
+* `src/`: generator typescript source files ("backend")
+* `views/`: nunjucks views
+
+The following directories will be created:
+* `build/`: generator javascript compiled code
+* **`generated/`: the static website, ready. This is the folder you should deploy on your hosting service**
+* `node_modules/`: you know that one
+
+## Licence
+MIT
