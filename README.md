@@ -27,11 +27,11 @@ https://github.com/code200fr/devportfolio/blob/main/src/Settings.ts
 To add a locale to your portfolio, add a file in ISO.json format (e.g. `en.json`, `es.json`),
 and add the ISO in the `etc/settings.json` file, at the `locales` property.
 
-The locale settings are based on the settings.json,
+The locale settings are based on `settings.json` and merged,
 so you only have to update or translate what changes.
 
 ### Style & Medias
-To change the CSS of the site, edit the file `assets/style.css`.
+To change the site's CSS, edit the file `assets/style.css`.
 It was designed so that the theme can be easily changed via CSS variables.
 
 To add images or videos, simply put them in the `assets/` folder,
